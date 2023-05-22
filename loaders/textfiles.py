@@ -1,8 +1,6 @@
-import os
 import argparse
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.embeddings import OpenAIEmbeddings
+from ..chain import embed_docs
 
 def main():
     parser = argparse.ArgumentParser()
@@ -16,9 +14,8 @@ def main():
             texts.append(f.read())
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.create_documents(texts, metadatas=[{'source': file} for file in args.files])
-    embeddings = OpenAIEmbeddings()
-    db = Chroma.from_documents(documents=documents, embedding=embeddings, persist_directory=args.db_dir)
-    db.persist()
+
+    embed_docs(args.db_dir, documents)
 
 if __name__ == '__main__':
     main()

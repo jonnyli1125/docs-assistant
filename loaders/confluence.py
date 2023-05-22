@@ -1,8 +1,7 @@
 import argparse
 from langchain.document_loaders import ConfluenceLoader
 from langchain.text_splitter import CharacterTextSplitter
-from langchain.vectorstores import Chroma
-from langchain.embeddings import LlamaCppEmbeddings
+from ..chain import embed_docs
 
 def main():
     parser = argparse.ArgumentParser()
@@ -19,9 +18,8 @@ def main():
         documents += loader.load(space_key=space_key)
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(documents)
-    embeddings = LlamaCppEmbeddings(model_path='./models/7B/ggml-model-q4_0.bin')
-    db = Chroma.from_documents(documents=documents, embedding=embeddings, persist_directory=args.db_dir)
-    db.persist()
+
+    embed_docs(args.db_dir)
 
 if __name__ == '__main__':
     main()
