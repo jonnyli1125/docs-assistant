@@ -1,3 +1,4 @@
+import os
 import argparse
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
@@ -14,10 +15,10 @@ def retrieval_qa_chain(db_dir: str) -> RetrievalQA:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('db_dir')
+    parser.add_argument('--db-dir')
     args = parser.parse_args()
 
-    qa = get_retrieval_qa_chain(args.db_dir)
+    qa = get_retrieval_qa_chain(args.db_dir or os.environ['CHROMA_DB_DIR'])
 
     while True:
         query = input('question: ')

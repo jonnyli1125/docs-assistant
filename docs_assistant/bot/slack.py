@@ -2,7 +2,6 @@ import os
 from slack_bolt import App
 from slack_bolt.adapter.socket_mode import SocketModeHandler
 from ..chain import get_retrieval_qa_chain, ask
-import logging
 
 app = App(token=os.environ['SLACK_BOT_TOKEN'])
 qa = get_retrieval_qa_chain(os.environ['CHROMA_DB_DIR'])

@@ -1,4 +1,4 @@
-from typing import List, Dict, Any
+from typing import List
 from langchain.schema import Document
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
