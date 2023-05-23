@@ -4,10 +4,11 @@ Chat bot assistant for asking questions about documentation databases using Lang
 
 This uses the `RetrievalQA` chain, in combination with the `Chroma` and `OpenAI` classes.
 
-# Usage
+## Usage
 
 To load documents into the DB, use the scripts in [docs_assistant/loaders](docs_assistant/loaders):
 ```
+OPENAI_API_KEY="..."
 python -m docs_assistant.loaders.textfiles /path/to/db/ file1.txt file2.txt
 ```
 
