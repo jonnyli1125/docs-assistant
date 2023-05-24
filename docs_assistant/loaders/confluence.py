@@ -25,7 +25,7 @@ def main():
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     documents = text_splitter.split_documents(documents)
 
-    embed_docs(args.db_dir or os.environ['CHROMA_DB_DIR'])
+    embed_docs(args.db_dir or os.environ['CHROMA_DB_DIR'], documents)
 
 if __name__ == '__main__':
     main()

@@ -1,4 +1,3 @@
-from typing import List
 from langchain.schema import Document
 from langchain.vectorstores import Chroma
 from langchain.chains import RetrievalQA
@@ -24,7 +23,7 @@ def ask(qa: RetrievalQA, query: str) -> str:
     sources_formatted = 'Relevant documents:\n' + '\n'.join(f'- {source}' for source in sources)
     return f'{answer}\n\n{sources_formatted}'
 
-def embed_docs(db_dir: str, documents: List[Document]) -> Chroma:
+def embed_docs(db_dir: str, documents: list[Document]) -> Chroma:
     embeddings = OpenAIEmbeddings()
     db = Chroma(embedding_function=embeddings, persist_directory=db_dir)
     db.add_documents(documents)

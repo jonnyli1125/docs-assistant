@@ -5,3 +5,5 @@ chromadb==0.3.23
 atlassian-python-api==3.37.0
 slack-sdk==3.21.3
 slack_bolt==1.18.0
+beautifulsoup4==4.12.2
+lxml==4.9.2
